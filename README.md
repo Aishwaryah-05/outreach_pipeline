@@ -21,6 +21,9 @@ This project is an automated outreach pipeline that:
 * CSV export
 * Brevo email integration
 * Domain-based email authentication
+- Safety checkpoint before sending emails
+- Personalized outreach emails
+- Error handling for API failures
 
 ---
 
