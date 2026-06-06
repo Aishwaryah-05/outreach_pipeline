@@ -1,3 +1,4 @@
+# Fallback implementation used while API endpoint access or setup is pending
 def get_decision_makers(company):
 
     print(

@@ -1,3 +1,4 @@
+# Fallback implementation used because API access or credits unavailable
 def get_email(linkedin):
 
     company = linkedin.split("/")[-2]
