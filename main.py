@@ -9,11 +9,13 @@ companies = get_similar_companies(domain)
 
 print("\nSimilar Companies:")
 
-# Create CSV file with header
+# Create CSV with fresh header
 with open("results.csv", "w") as f:
     f.write("Company,Person,Email\n")
 
 all_contacts = []
+
+seen_emails = set()
 
 for company in companies:
 
@@ -29,49 +31,74 @@ for company in companies:
                 person["linkedin"]
             )
 
-        except Exception:
+        except Exception as e:
 
-            print("Email fetch failed")
+            print(
+                "Email fetch failed:",
+                e
+            )
 
             continue
 
+        # Deduplication
+        if email in seen_emails:
+
+            continue
+
+        seen_emails.add(email)
+
         print(
+
             person["name"],
             "-",
             person["linkedin"],
             "-",
             email
+
         )
 
-        # Save to CSV
+        # Save CSV
         with open("results.csv", "a") as f:
 
             f.write(
+
                 f"{company},{person['name']},{email}\n"
+
             )
 
-        # Store contacts for later email sending
-        all_contacts.append({
-            "company": company,
-            "name": person["name"],
-            "email": email
-        })
+        all_contacts.append(
 
-# Safety checkpoint
-print("\nSummary Before Sending Emails")
+            {
+
+                "company": company,
+
+                "name": person["name"],
+
+                "email": email
+
+            }
+
+        )
+
+# Summary checkpoint
+print("\nSUMMARY BEFORE SENDING\n")
 
 for contact in all_contacts:
 
     print(
+
         contact["company"],
         "-",
         contact["name"],
         "-",
         contact["email"]
+
     )
 
 confirm = input(
+
     "\nSend emails now? (yes/no): "
+
 )
 
 if confirm.lower() == "yes":
@@ -92,25 +119,43 @@ Aishwarya
         try:
 
             send_brevo_email(
+
                 "aishwaryah825@gmail.com",
+
                 f"Opportunity for {contact['company']}",
+
                 message
+
             )
 
             print(
+
                 "Email Sent ->",
+
                 contact["name"]
+
             )
 
-        except Exception:
+        except Exception as e:
 
             print(
-                "Failed sending email to",
-                contact["name"]
+
+                "Failed sending email:",
+
+                e
+
             )
 
 else:
 
-    print("Emails skipped")
+    print(
 
-print("\nPipeline Completed Successfully!")
+        "Emails skipped"
+
+    )
+
+print(
+
+    "\nPipeline Completed Successfully!"
+
+)

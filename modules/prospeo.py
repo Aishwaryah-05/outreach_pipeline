@@ -1,17 +1,20 @@
 def get_decision_makers(company):
 
-    print("Finding decision makers for:", company)
+    print(
+        "Finding decision makers for:",
+        company
+    )
 
     return [
 
         {
-            "name": "CEO John",
-            "linkedin": "linkedin.com/john"
+            "name": "CEO",
+            "linkedin": f"https://linkedin.com/{company}/ceo"
         },
 
         {
-            "name": "VP Sarah",
-            "linkedin": "linkedin.com/sarah"
+            "name": "VP Sales",
+            "linkedin": f"https://linkedin.com/{company}/vp-sales"
         }
 
     ]

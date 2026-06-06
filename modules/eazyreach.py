@@ -1,15 +1,9 @@
 def get_email(linkedin):
 
-    print("Finding email for:", linkedin)
+    company = linkedin.split("/")[-2]
 
-    if "amazon" in linkedin:
+    username = linkedin.split("/")[-1]
 
-        return "ceo@amazon.com"
+    company = company.replace(".com", "")
 
-    elif "microsoft" in linkedin:
-
-        return "ceo@microsoft.com"
-
-    else:
-
-        return "ceo@meta.com"
+    return f"{username}@{company}.com"
