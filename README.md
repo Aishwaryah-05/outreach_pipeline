@@ -2,57 +2,118 @@
 
 ## Project Overview
 
-This project automates the outreach workflow by finding similar companies, identifying decision makers, generating email addresses, and sending emails automatically using SMTP.
+This project is an automated outreach pipeline that:
+
+* Takes a company domain as input
+* Finds similar companies
+* Finds decision makers from those companies
+* Generates email addresses
+* Stores results in CSV format
+* Sends outreach emails using Brevo API
+
+---
 
 ## Features
 
-* Find similar companies from a company domain
-* Get decision makers from companies
-* Find email addresses
-* Send emails using custom domain email
-* Store generated data in CSV format
-* SMTP email integration using Private Email
+* Similar company discovery
+* Decision maker extraction
+* Email generation
+* CSV export
+* Brevo email integration
+* Domain-based email authentication
 
-## Technologies Used
-
-* Python
-* SMTP
-* CSV
-* Git & GitHub
+---
 
 ## Project Structure
 
+```text
 outreach_pipeline/
-│── modules/
+│
+├── modules/
 │   ├── ocean.py
 │   ├── prospeo.py
 │   ├── eazyreach.py
-│   ├── email_sender.py
-│── main.py
-│── config.py
-│── requirements.txt
-│── README.md
+│   ├── brevo.py
+│   └── email_sender.py
+│
+├── main.py
+├── config.py
+├── requirements.txt
+├── results.csv
+├── .env
+├── README.md
+```
+
+---
 
 ## Installation
 
+Clone repository:
+
+```bash
+git clone <repository-link>
+cd outreach_pipeline
+```
+
 Install dependencies:
 
+```bash
 pip install -r requirements.txt
+```
+
+---
+
+## Environment Variables
+
+Create `.env` file:
+
+```env
+EMAIL=your_domain_email
+PASSWORD=your_password
+SMTP_SERVER=mail.privateemail.com
+SMTP_PORT=587
+BREVO_API_KEY=your_brevo_api_key
+```
+
+---
 
 ## Run Project
 
-Run the project using:
-
+```bash
 python main.py
+```
 
-Enter company domain when prompted:
+Example input:
 
-Example:
+```text
 google.com
+```
+
+---
 
 ## Output
 
-* Sends emails using configured SMTP
-* Generates outreach results
-* Stores output in CSV format
+The project generates:
+
+* `results.csv`
+* Outreach emails via Brevo
+* Console output with company data
+
+Example CSV:
+
+```text
+Company,Person,Email
+amazon.com,CEO John,ceo@meta.com
+meta.com,VP Sarah,ceo@meta.com
+```
+
+---
+
+## APIs / Services Used
+
+* Ocean API / Similar company lookup
+* Prospeo API
+* EazyReach API
+* Brevo API
+* Namecheap Private Email
 
