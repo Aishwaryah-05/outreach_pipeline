@@ -1,35 +1,35 @@
 # Outreach Pipeline
 
-## Project Overview
+## Overview
 
 This project is an automated outreach pipeline that:
 
-* Takes a company domain as input
-* Finds similar companies
-* Finds decision makers from those companies
+* Finds similar companies from a given company domain
+* Finds decision makers for each company
 * Generates email addresses
-* Stores results in CSV format
-* Sends outreach emails using Brevo API
+* Saves results into CSV format
+* Sends outreach emails using Brevo
+* Provides a confirmation step before sending emails
 
 ---
 
 ## Features
 
-* Similar company discovery
+* Company discovery module
 * Decision maker extraction
 * Email generation
 * CSV export
 * Brevo email integration
-* Domain-based email authentication
-- Safety checkpoint before sending emails
-- Personalized outreach emails
-- Error handling for API failures
+* Confirmation before bulk sending
+* Modular architecture
+* Error handling for API failures
+* Environment variable support
 
 ---
 
 ## Project Structure
 
-```text
+```
 outreach_pipeline/
 │
 ├── modules/
@@ -39,43 +39,54 @@ outreach_pipeline/
 │   ├── brevo.py
 │   └── email_sender.py
 │
-├── main.py
+├── .env
+├── .gitignore
 ├── config.py
+├── main.py
 ├── requirements.txt
 ├── results.csv
-├── .env
-├── README.md
+└── README.md
 ```
 
 ---
 
-## Installation
+## Technologies Used
 
-Clone repository:
+* Python
+* Brevo API
+* SMTP
+* CSV Handling
+* Environment Variables
+* Git & GitHub
+
+---
+
+## Setup Instructions
+
+### Clone Repository
 
 ```bash
-git clone <repository-link>
+git clone https://github.com/Aishwaryah-05/outreach_pipeline.git
 cd outreach_pipeline
 ```
 
-Install dependencies:
+### Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
----
+### Configure Environment Variables
 
-## Environment Variables
-
-Create `.env` file:
+Create a `.env` file:
 
 ```env
-EMAIL=your_domain_email
+EMAIL=your_email
 PASSWORD=your_password
 SMTP_SERVER=mail.privateemail.com
 SMTP_PORT=587
-BREVO_API_KEY=your_brevo_api_key
+BREVO_API_KEY=your_brevo_key
+PROSPEO_API_KEY=your_prospeo_key
 ```
 
 ---
@@ -86,7 +97,7 @@ BREVO_API_KEY=your_brevo_api_key
 python main.py
 ```
 
-Example input:
+Enter:
 
 ```text
 google.com
@@ -94,29 +105,85 @@ google.com
 
 ---
 
+## Workflow
+
+1. Enter company domain
+2. Find similar companies
+3. Extract decision makers
+4. Generate emails
+5. Save output to CSV
+6. Show summary
+7. Confirm sending
+8. Send emails using Brevo
+
+---
+
 ## Output
 
-The project generates:
+### CSV Output
 
-* `results.csv`
-* Outreach emails via Brevo
-* Console output with company data
-
-Example CSV:
+Results are stored in:
 
 ```text
-Company,Person,Email
-amazon.com,CEO John,ceo@meta.com
-meta.com,VP Sarah,ceo@meta.com
+results.csv
+```
+
+Example:
+
+```text
+amazon.com,CEO,ceo@amazon.com
+amazon.com,VP Sales,vp-sales@amazon.com
 ```
 
 ---
 
-## APIs / Services Used
+## API / Tool Notes
 
-* Ocean API / Similar company lookup
-* Prospeo API
-* EazyReach API
-* Brevo API
-* Namecheap Private Email
+### Brevo
 
+* Used for sending emails
+* API integration completed
+
+### Ocean.io
+
+* Signup/API limitations encountered
+* Fallback implementation used
+
+### Prospeo
+
+* API endpoint issues encountered
+* Modular replacement maintained
+
+### EazyReach
+
+* No accessible API / credits unavailable
+* Fallback implementation maintained
+
+---
+
+## Error Handling
+
+Implemented for:
+
+* API failures
+* Empty responses
+* Email sending failures
+* Invalid results
+
+---
+
+## Future Improvements
+
+* Real API integrations
+* Better email personalization
+* Logging system
+* Database support
+* Analytics dashboard
+
+---
+
+## GitHub Repository
+
+Repository:
+
+https://github.com/Aishwaryah-05/outreach_pipeline
